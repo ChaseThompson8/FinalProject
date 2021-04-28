@@ -31,6 +31,8 @@ class HomeFragment : Fragment() {
         homeList.add("2")
         homeList.add("3")
         homeList.add("4")
+        homeList.add("5")
+        homeList.add("6")
 
         // List View
         val homeAdapter = ArrayAdapter<String>(view.context, android.R.layout.simple_list_item_1, homeList)

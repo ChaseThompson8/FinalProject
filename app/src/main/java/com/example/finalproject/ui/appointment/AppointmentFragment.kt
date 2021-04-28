@@ -1,6 +1,7 @@
 package com.example.finalproject.ui.appointment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ class AppointmentFragment : Fragment() {
 
     private lateinit var appointmentViewModel: AppointmentViewModel
     val TAG = "AppointmentFragment"
+    private val REQUEST_CODE = 88
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -45,10 +47,10 @@ class AppointmentFragment : Fragment() {
 
             val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
-            val make = make_text.toString()
-            val model = model_text.toString()
-            val year = year_text.toString()
-            val details = details_text.toString()
+            val make = make_text.text.toString()
+            val model = model_text.text.toString()
+            val year = year_text.text.toString()
+            val details = details_text.text.toString()
             var maintenance = false
             var repair = false
             var other = false
@@ -91,6 +93,21 @@ class AppointmentFragment : Fragment() {
             editor.putString("Date", date)
 
             editor.apply()
+
+//            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.nav_host_fragment, ConfirmationFragment())
+//                .addToBackStack(null)
+//                .commit()
+
+            val myIntent = Intent(root.context, ConfirmationActivity::class.java)
+
+            myIntent.putExtra("Make", make)
+            myIntent.putExtra("Model", model)
+            myIntent.putExtra("Year", year)
+            myIntent.putExtra("Date", date)
+
+            startActivityForResult(myIntent, REQUEST_CODE)
+
         }
 
         return root

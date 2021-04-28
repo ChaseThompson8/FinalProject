@@ -25,6 +25,10 @@ class ProfileFragment : Fragment() {
         profileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        // Ability to find appointments and change them
+        // Make if (previous appt clicked then load data into appointment fragment and update the data in database?
+
         return root
 
     }
