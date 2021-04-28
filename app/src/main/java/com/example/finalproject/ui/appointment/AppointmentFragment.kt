@@ -90,7 +90,6 @@ class AppointmentFragment : Fragment() {
             editor.putString("Details", details)
             editor.putString("Date", date)
 
-            Log.d(TAG, date)
             editor.apply()
         }
 

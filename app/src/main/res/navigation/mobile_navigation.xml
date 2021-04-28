@@ -12,19 +12,19 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_appointment"
         android:name="com.example.finalproject.ui.appointment.AppointmentFragment"
-        android:label="@string/title_dashboard"
+        android:label="Appointments"
         tools:layout="@layout/fragment_appointment" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.finalproject.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_location"
+        android:name="com.example.finalproject.ui.location.LocationFragment"
+        android:label="Location"
+        tools:layout="@layout/fragment_location" />
     <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.example.finalproject.ui.settings.SettingsFragment"
-        android:label="@string/settings"
-        tools:layout="@layout/fragment_settings" />
+        android:id="@+id/navigation_profile"
+        android:name="com.example.finalproject.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

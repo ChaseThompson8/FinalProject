@@ -1,4 +1,4 @@
-package com.example.finalproject.ui.settings
+package com.example.finalproject.ui.profile
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.example.finalproject.R
 
-class SettingsFragment : Fragment() {
-    private lateinit var settingsViewModel: SettingsViewModel
+class ProfileFragment : Fragment() {
+    private lateinit var profileViewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,10 +19,10 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_settings, container, false)
+        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_profile, container, false)
         val textView: TextView = root.findViewById(R.id.text_settings)
-        settingsViewModel.text.observe(viewLifecycleOwner, Observer {
+        profileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
