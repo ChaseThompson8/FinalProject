@@ -20,11 +20,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Set reminders for maintenance needed on car (oil change timers, tire rotation, etc.) and have it send notifications potentially"
-        tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="72dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

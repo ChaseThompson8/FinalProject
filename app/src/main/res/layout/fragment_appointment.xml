@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toStartOf="@+id/model_text"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/maintenance_box" />
 
     <TextView
         android:id="@+id/appointment_header"
@@ -58,50 +58,50 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/next_button"
+        android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calander_item" />
+        app:layout_constraintTop_toBottomOf="@+id/calendar_item" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/maintenance_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Maintenance"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+        app:layout_constraintEnd_toStartOf="@+id/repair_box"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appointment_header" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/repair_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Damage repair"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox3"
+        app:layout_constraintBottom_toBottomOf="@+id/maintenance_box"
+        app:layout_constraintEnd_toStartOf="@+id/other_box"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toTopOf="@+id/checkBox" />
+        app:layout_constraintStart_toEndOf="@+id/maintenance_box"
+        app:layout_constraintTop_toTopOf="@+id/maintenance_box" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/other_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Other"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
+        app:layout_constraintBottom_toBottomOf="@+id/repair_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/checkBox2"
-        app:layout_constraintTop_toTopOf="@+id/checkBox2" />
+        app:layout_constraintStart_toEndOf="@+id/repair_box"
+        app:layout_constraintTop_toTopOf="@+id/repair_box" />
 
     <CalendarView
-        android:id="@+id/calander_item"
+        android:id="@+id/calendar_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
