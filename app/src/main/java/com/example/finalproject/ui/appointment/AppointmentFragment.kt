@@ -32,52 +32,65 @@ class AppointmentFragment : Fragment() {
 //            textView.text = it
         })
 
-        root.submit_button.setOnClickListener {
+        val initDate = calendar_item
+        // Check to see if the user changes the date on the calendar, convert it into a string and store in a variable
+        var date = ""
+        root.calendar_item.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val month1 = month+1
+            date = "$month1/$dayOfMonth/$year"
+        }
 
-            if (maintenance_box == null && repair_box == null && other_box == null) {
-                Log.d(TAG, "No check box selected")
-//                showDialogue("Check box not selected", "Check off what kind of service appointment you'd like to schedule")
-            }
-            else if (make_text == null || model_text == null || year_text == null || details_text == null) {
-                Log.d(TAG, "Missing car info")
-//                showDialogue("Car info or details for appointment not entered", "Please fill out the info for you vehicle and the details for the appointment")
-            }
-            else if (calendar_item == null) {
-                Log.d(TAG, "No date selected")
-//                showDialogue("Date of Appointment not specified", "Please select the date you wish to schedule the appointment for")
-            }
+
+        root.submit_button.setOnClickListener {
 
             val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
-
             val make = make_text.toString()
             val model = model_text.toString()
             val year = year_text.toString()
             val details = details_text.toString()
-            val calendar = calendar_item.toString()
-            val maintenance = maintenance_box
+            var maintenance = false
             var repair = false
             var other = false
 
+            // Check to see what check boxes are clicked
+            if (maintenance_box.isChecked) {
+                maintenance = true
+                editor.putBoolean("Maintenance", maintenance)
+                Log.d(TAG, "Maintenance = $maintenance")
+            }
+            if (repair_box.isChecked) {
+                repair = true
+                editor.putBoolean("Repair", repair)
+                Log.d(TAG, "Repair = $repair")
+            }
+            if (other_box.isChecked) {
+                other = true
+                editor.putBoolean("Other", other)
+                Log.d(TAG, "Other = $other")
+            }
 
-//            editor.putBoolean("Maintenance", maintenance)
-            Log.d(TAG, "Maintenance = $maintenance")
-
-            editor.putBoolean("Repair", repair)
-            Log.d(TAG, "Repair = $repair")
-
-            editor.putBoolean("Other", other)
-            Log.d(TAG, "Other = $other")
-
+            //Check to see if the user filled out all the necessary queries to schedule an appointment
+            if (!maintenance && !repair && !other) {
+                Log.d(TAG, "No check box selected")
+//                showDialogue("Check box not selected", "Check off what kind of service appointment you'd like to schedule")
+            }
+            else if (make.isEmpty() || model.isEmpty() || year.isEmpty() || details.isEmpty()) {
+                Log.d(TAG, "Missing car info")
+//                showDialogue("Car info or details for appointment not entered", "Please fill out the info for you vehicle and the details for the appointment")
+            }
+            else if (calendar_item == initDate) {
+                Log.d(TAG, "No date selected")
+//                showDialogue("Date of Appointment not specified", "Please select the date you wish to schedule the appointment for")
+            }
 
             editor.putString("Make", make)
             editor.putString("Model", model)
             editor.putString("Year", year)
             editor.putString("Details", details)
-            editor.putString("Calendar", calendar)
-//            editor.putBoolean("Maintenance", maintenance)
+            editor.putString("Date", date)
 
-            Log.d(TAG, calendar)
+            Log.d(TAG, date)
             editor.apply()
         }
 
