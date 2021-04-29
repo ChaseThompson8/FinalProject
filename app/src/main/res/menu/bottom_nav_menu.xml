@@ -9,15 +9,15 @@
     <item
         android:id="@+id/navigation_appointment"
         android:icon="@drawable/ic_baseline_car_repair_24"
-        android:title="Appointments" />
+        android:title="@string/appointments" />
 
     <item
         android:id="@+id/navigation_location"
         android:icon="@drawable/ic_baseline_location_on_24"
-        android:title="Location" />
+        android:title="@string/location" />
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="Profile" />
+        android:title="@string/profile" />
 
 </menu>

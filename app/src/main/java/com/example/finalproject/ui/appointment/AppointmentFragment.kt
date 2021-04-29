@@ -75,52 +75,54 @@ class AppointmentFragment : Fragment() {
             //Check to see if the user filled out all the necessary queries to schedule an appointment
             if (!maintenance && !repair && !other) {
                 Log.d(TAG, "No check box selected")
-//                showDialogue("Check box not selected", "Check off what kind of service appointment you'd like to schedule")
+                showDialogue("Check box not selected", "Check off what kind of service appointment you'd like to schedule")
             }
             else if (make.isEmpty() || model.isEmpty() || year.isEmpty() || details.isEmpty()) {
                 Log.d(TAG, "Missing car info")
-//                showDialogue("Car info or details for appointment not entered", "Please fill out the info for you vehicle and the details for the appointment")
+                showDialogue("Car info or details missing", "Please fill out the info for you vehicle and the details for the appointment")
             }
             else if (calendar_item == initDate) {
                 Log.d(TAG, "No date selected")
-//                showDialogue("Date of Appointment not specified", "Please select the date you wish to schedule the appointment for")
+                showDialogue("Date of Appointment not specified", "Please select the date you wish to schedule the appointment for")
             }
+            else {
 
-            editor.putString("Make", make)
-            editor.putString("Model", model)
-            editor.putString("Year", year)
-            editor.putString("Details", details)
-            editor.putString("Date", date)
+                editor.putString("Make", make)
+                editor.putString("Model", model)
+                editor.putString("Year", year)
+                editor.putString("Details", details)
+                editor.putString("Date", date)
 
-            editor.apply()
+                editor.apply()
 
 //            requireActivity().supportFragmentManager.beginTransaction()
 //                .replace(R.id.nav_host_fragment, ConfirmationFragment())
 //                .addToBackStack(null)
 //                .commit()
 
-            val myIntent = Intent(root.context, ConfirmationActivity::class.java)
+                val myIntent = Intent(root.context, ConfirmationActivity::class.java)
 
-            myIntent.putExtra("Make", make)
-            myIntent.putExtra("Model", model)
-            myIntent.putExtra("Year", year)
-            myIntent.putExtra("Date", date)
+                myIntent.putExtra("Make", make)
+                myIntent.putExtra("Model", model)
+                myIntent.putExtra("Year", year)
+                myIntent.putExtra("Date", date)
 
-            startActivityForResult(myIntent, REQUEST_CODE)
+                startActivityForResult(myIntent, REQUEST_CODE)
+            }
 
         }
 
         return root
     }
 
-//    private fun showDialogue(title: String, message: String) {
-//        val builder = AlertDialog.Builder(this)
-//        builder.setTitle(title)
-//        builder.setMessage(message)
-//        builder.setIcon(android.R.drawable.ic_delete)
-//        builder.setPositiveButton("OKAY"){ dialog, which ->
-//        }
-//        val dialog = builder.create()
-//        dialog.show()
-//    }
+    private fun showDialogue(title: String, message: String) {
+        val builder = activity?.let { AlertDialog.Builder(it) }
+        builder?.setTitle(title)
+        builder?.setMessage(message)
+        builder?.setIcon(android.R.drawable.ic_delete)
+        builder?.setPositiveButton("OKAY"){ dialog, which ->
+        }
+        val dialog = builder?.create()
+        dialog?.show()
+    }
 }
