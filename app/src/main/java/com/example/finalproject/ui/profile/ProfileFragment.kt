@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.AppointmentHistory
 import com.example.finalproject.R
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 class ProfileFragment : Fragment() {
@@ -29,8 +30,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?): View? {
 
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
@@ -117,6 +117,10 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        root.edit_profile_button.setOnClickListener {
+            editProfileDialogue("Edit Profile Name or Email")
+        }
+
         // Define an array to store a list of users
         val apptList = ArrayList<AppointmentHistory>()
 
@@ -194,6 +198,39 @@ class ProfileFragment : Fragment() {
             maintenanceList2[pos] = "$msg: $userUpdate"
             maintenanceAdapter2.notifyDataSetChanged()
             Log.d(TAG, "Updated: $userUpdate")
+        }
+        builder.setNeutralButton("Cancel"){dialog, which ->
+            // code to run when Cancel is pressed
+        }
+        // create the dialog and show it
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun editProfileDialogue(title: String) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setIcon(android.R.drawable.ic_menu_edit)
+        builder.setTitle(title)
+        val ETName = EditText(activity)
+        val ETEmail = EditText(activity)
+        ETName.hint = "Updated profile name"
+        ETEmail.hint = "Updated email address"
+        builder.setView(ETName)
+        builder.setView(ETEmail)
+        // Set the button actions (i.e. listeners), optional
+        builder.setPositiveButton("OK"){ dialog, which ->
+            // code to run when OK is pressed
+            val nameUpdate = ETName.text.toString()
+            val emailUpdate = ETEmail.text.toString()
+            if (nameUpdate.isNotEmpty()) {
+                profile_name.text = nameUpdate
+            }
+            if (emailUpdate.isNotEmpty()) {
+                profile_email.text = emailUpdate
+            }
+            Log.d(TAG, "Updated: $nameUpdate")
+            Log.d(TAG, "Updated: $emailUpdate")
+
         }
         builder.setNeutralButton("Cancel"){dialog, which ->
             // code to run when Cancel is pressed

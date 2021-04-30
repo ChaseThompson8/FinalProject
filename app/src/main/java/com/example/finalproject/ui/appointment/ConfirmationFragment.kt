@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.finalproject.R
-import kotlinx.android.synthetic.main.activity_confirmation.*
-import kotlinx.android.synthetic.main.activity_confirmation.view.*
+import kotlinx.android.synthetic.main.fragment_confirmation.view.*
 
 class ConfirmationFragment : Fragment() {
 
@@ -22,17 +22,11 @@ class ConfirmationFragment : Fragment() {
     var date = ""
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        confirmationViewModel =
-            ViewModelProvider(this).get(ConfirmationViewModel::class.java)
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?): View? {
+        confirmationViewModel = ViewModelProvider(this).get(ConfirmationViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_confirmation, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_appointment)
-        confirmationViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-        })
 
         val sharedPreference = activity?.getPreferences(Context.MODE_PRIVATE)
         val makeInfo = sharedPreference?.getString("Make", make) ?: ""
@@ -40,13 +34,21 @@ class ConfirmationFragment : Fragment() {
         val yearInfo = sharedPreference?.getString("Year", year) ?: ""
         val dateInfo = sharedPreference?.getString("Date", date) ?: ""
 
-//        val makeInfo = intent.getStringExtra("Make")
-//        val modelInfo = intent.getStringExtra("Model")
-//        val yearInfo = intent.getStringExtra("Year")
-//        val dateInfo = intent.getStringExtra("Date")
 
         root.confirmation_body.text = "You appointment for your $yearInfo $makeInfo $modelInfo is all set for $dateInfo."
 
+
+        root.new_appt_button.setOnClickListener {
+            val navController = Navigation.findNavController(root)
+            navController.navigate(R.id.navigation_appointment)
+        }
+
+        root.home_button.setOnClickListener {
+            val navController = Navigation.findNavController(root)
+            navController.navigate(R.id.navigation_home)
+        }
+
         return root
     }
+
 }

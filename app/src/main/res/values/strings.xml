@@ -13,7 +13,6 @@
     <string name="thank_you_for_choosing_us">Thank you for choosing us!</string>
     <string name="body">Body</string>
     <string name="we_look_forward_to_working_with_you">We look forward to working with you!</string>
-    <string name="if_you_would_like_to_change_anything_about_your_appointment_you_can_navigate_to_your_profile_find_the_appointment_and_select_edit">If you would like to change anything about your appointment you can navigate to your profile, find the appointment, and select edit</string>
     <string name="make_new_appointment">Make New Appointment</string>
     <string name="home">Home</string>
     <string name="appointment_confirmation">Appointment Confirmation</string>
@@ -26,4 +25,14 @@
     <string name="appointments">Appointments</string>
     <string name="location">Location</string>
     <string name="profile">Profile</string>
+    <string name="details_for_appointment">Details for appointment</string>
+    <string name="make_of_vehicle">Make of vehicle</string>
+    <string name="make_an_appointment">Make an appointment</string>
+    <string name="submit">Submit</string>
+    <string name="maintenance">Maintenance</string>
+    <string name="damage_repair">Damage repair</string>
+    <string name="other">Other</string>
+    <string name="year_of_vehicle">Year of vehicle</string>
+    <string name="model_of_vehicle">Model of vehicle</string>
+    <string name="edit_appointment">If you would like to change anything about your appointment you can navigate to your profile, find the appointment under "Appointment History" and click on it</string>
 </resources>

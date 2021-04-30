@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.appointment.ConfirmationActivity">
+    tools:context=".ui.appointment.ConfirmationFragment">
 
     <TextView
         android:id="@+id/confirmation_header"
@@ -62,7 +62,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="32dp"
-        android:text="@string/if_you_would_like_to_change_anything_about_your_appointment_you_can_navigate_to_your_profile_find_the_appointment_and_select_edit"
+        android:text="@string/edit_appointment"
         app:layout_constraintBottom_toTopOf="@+id/new_appt_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -71,7 +71,7 @@
         android:id="@+id/new_appt_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/make_new_appointment"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,7 +83,7 @@
         android:id="@+id/home_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

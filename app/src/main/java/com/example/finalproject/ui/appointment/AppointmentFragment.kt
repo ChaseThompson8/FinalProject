@@ -11,9 +11,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_appointment.*
 import kotlinx.android.synthetic.main.fragment_appointment.view.*
+import java.util.*
 
 class AppointmentFragment : Fragment() {
 
@@ -26,22 +28,15 @@ class AppointmentFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        appointmentViewModel =
-                ViewModelProvider(this).get(AppointmentViewModel::class.java)
+        appointmentViewModel = ViewModelProvider(this).get(AppointmentViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_appointment, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_appointment)
-        appointmentViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-        })
 
-        val initDate = calendar_item
         // Check to see if the user changes the date on the calendar, convert it into a string and store in a variable
         var date = ""
         root.calendar_item.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val month1 = month+1
             date = "$month1/$dayOfMonth/$year"
         }
-
 
         root.submit_button.setOnClickListener {
 
@@ -75,16 +70,20 @@ class AppointmentFragment : Fragment() {
             //Check to see if the user filled out all the necessary queries to schedule an appointment
             if (!maintenance && !repair && !other) {
                 Log.d(TAG, "No check box selected")
-                showDialogue("Check box not selected", "Check off what kind of service appointment you'd like to schedule")
+                showDialogue("Check box not selected", "Check off what kind of service" +
+                        " appointment you'd like to schedule")
             }
             else if (make.isEmpty() || model.isEmpty() || year.isEmpty() || details.isEmpty()) {
                 Log.d(TAG, "Missing car info")
-                showDialogue("Car info or details missing", "Please fill out the info for you vehicle and the details for the appointment")
+                showDialogue("Car info or details missing", "Please fill out the info " +
+                        "for you vehicle and the details for the appointment")
             }
-            else if (calendar_item == initDate) {
-                Log.d(TAG, "No date selected")
-                showDialogue("Date of Appointment not specified", "Please select the date you wish to schedule the appointment for")
-            }
+//            else if (newDate < plusDay) {
+//                Log.d(TAG, "No date selected")
+//                showDialogue("Date of Appointment not specified",
+//                    "Please select the date you wish to schedule the appointment for.\n" +
+//                            "Make sure the date selected is at least one day from the current date")
+//            }
             else {
 
                 editor.putString("Make", make)
@@ -95,19 +94,22 @@ class AppointmentFragment : Fragment() {
 
                 editor.apply()
 
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .replace(R.id.nav_host_fragment, ConfirmationFragment())
-//                .addToBackStack(null)
-//                .commit()
+                val navController = Navigation.findNavController(root)
+                navController.navigate(R.id.confirmationFragment)
 
-                val myIntent = Intent(root.context, ConfirmationActivity::class.java)
+//                requireActivity().supportFragmentManager.beginTransaction()
+//                    .replace(R.id.nav_host_fragment, ConfirmationFragment())
+//                    .addToBackStack(null)
+//                    .commit()
 
-                myIntent.putExtra("Make", make)
-                myIntent.putExtra("Model", model)
-                myIntent.putExtra("Year", year)
-                myIntent.putExtra("Date", date)
-
-                startActivityForResult(myIntent, REQUEST_CODE)
+//                val myIntent = Intent(root.context, ConfirmationActivity::class.java)
+//
+//                myIntent.putExtra("Make", make)
+//                myIntent.putExtra("Model", model)
+//                myIntent.putExtra("Year", year)
+//                myIntent.putExtra("Date", date)
+//
+//                startActivityForResult(myIntent, REQUEST_CODE)
             }
 
         }

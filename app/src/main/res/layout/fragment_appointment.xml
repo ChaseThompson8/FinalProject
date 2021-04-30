@@ -1,125 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.appointment.AppointmentFragment">
 
-    <EditText
-        android:id="@+id/model_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="9"
-        android:hint="Model of vehicle"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/make_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/make_text"
-        app:layout_constraintTop_toTopOf="@+id/make_text" />
+        <EditText
+            android:id="@+id/model_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="9"
+            android:hint="@string/model_of_vehicle"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/make_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/make_text"
+            app:layout_constraintTop_toTopOf="@+id/make_text"
+            android:autofillHints="" />
 
-    <EditText
-        android:id="@+id/details_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Details for appointment"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="@+id/year_text"
-        app:layout_constraintStart_toStartOf="@+id/year_text"
-        app:layout_constraintTop_toBottomOf="@+id/year_text" />
+        <EditText
+            android:id="@+id/details_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/details_for_appointment"
+            android:inputType="textMultiLine"
+            android:isScrollContainer="true"
+            app:layout_constraintEnd_toEndOf="@+id/year_text"
+            app:layout_constraintStart_toStartOf="@+id/year_text"
+            app:layout_constraintTop_toBottomOf="@+id/year_text" />
 
-    <EditText
-        android:id="@+id/make_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="9"
-        android:hint="Make of vehicle"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/model_text"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/maintenance_box" />
+        <EditText
+            android:id="@+id/make_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="9"
+            android:hint="@string/make_of_vehicle"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/model_text"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/maintenance_box" />
 
-    <TextView
-        android:id="@+id/appointment_header"
-        style="@style/Widget.AppCompat.TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Make an appointment"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/appointment_header"
+            style="@style/Widget.AppCompat.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/make_an_appointment"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/submit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendar_item" />
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendar_item" />
 
-    <CheckBox
-        android:id="@+id/maintenance_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Maintenance"
-        app:layout_constraintEnd_toStartOf="@+id/repair_box"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appointment_header" />
+        <CheckBox
+            android:id="@+id/maintenance_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/maintenance"
+            app:layout_constraintEnd_toStartOf="@+id/repair_box"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appointment_header" />
 
-    <CheckBox
-        android:id="@+id/repair_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Damage repair"
-        app:layout_constraintBottom_toBottomOf="@+id/maintenance_box"
-        app:layout_constraintEnd_toStartOf="@+id/other_box"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/maintenance_box"
-        app:layout_constraintTop_toTopOf="@+id/maintenance_box" />
+        <CheckBox
+            android:id="@+id/repair_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/damage_repair"
+            app:layout_constraintBottom_toBottomOf="@+id/maintenance_box"
+            app:layout_constraintEnd_toStartOf="@+id/other_box"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/maintenance_box"
+            app:layout_constraintTop_toTopOf="@+id/maintenance_box" />
 
-    <CheckBox
-        android:id="@+id/other_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Other"
-        app:layout_constraintBottom_toBottomOf="@+id/repair_box"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/repair_box"
-        app:layout_constraintTop_toTopOf="@+id/repair_box" />
+        <CheckBox
+            android:id="@+id/other_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/other"
+            app:layout_constraintBottom_toBottomOf="@+id/repair_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/repair_box"
+            app:layout_constraintTop_toTopOf="@+id/repair_box" />
 
-    <CalendarView
-        android:id="@+id/calendar_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details_text" />
+        <CalendarView
+            android:id="@+id/calendar_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_text" />
 
-    <EditText
-        android:id="@+id/year_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Year of vehicle"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/model_text" />
+        <EditText
+            android:id="@+id/year_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/year_of_vehicle"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/model_text" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
