@@ -1,22 +1,23 @@
 package com.example.finalproject.ui.profile
 
 import android.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.AppointmentHistory
 import com.example.finalproject.R
-import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+
 
 class ProfileFragment : Fragment() {
 
@@ -28,9 +29,9 @@ class ProfileFragment : Fragment() {
     private val maintenanceList2 = ArrayList<String>()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?): View? {
 
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
@@ -117,8 +118,9 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        root.edit_profile_button.setOnClickListener {
-            editProfileDialogue("Edit Profile Name or Email")
+        root.edit_profile_btn.setOnClickListener {
+            val navController = Navigation.findNavController(root)
+            navController.navigate(R.id.editProfileFragment)
         }
 
         // Define an array to store a list of users
@@ -153,7 +155,7 @@ class ProfileFragment : Fragment() {
 //
 //        // The for loop will generate [size] amount of contact data and store in a list
 //        for (i in 1..size) {
-//            val person = AppointmentHistory("Num-$i 4/20/21", "Damage repair", "car", "deatials")
+//            val person = AppointmentHistory("Num-$i 4/20/21", "Damage repair", "car", "details")
 //            contacts.add(person)
 //        }
 //        // return the list of contacts
@@ -176,7 +178,7 @@ class ProfileFragment : Fragment() {
             maintenanceAdapter.notifyDataSetChanged()
             Log.d(TAG, "Updated: $userUpdate")
         }
-        builder.setNeutralButton("Cancel"){dialog, which ->
+        builder.setNeutralButton("Cancel"){ dialog, which ->
         // code to run when Cancel is pressed
         }
         // create the dialog and show it
@@ -199,7 +201,7 @@ class ProfileFragment : Fragment() {
             maintenanceAdapter2.notifyDataSetChanged()
             Log.d(TAG, "Updated: $userUpdate")
         }
-        builder.setNeutralButton("Cancel"){dialog, which ->
+        builder.setNeutralButton("Cancel"){ dialog, which ->
             // code to run when Cancel is pressed
         }
         // create the dialog and show it
@@ -207,36 +209,36 @@ class ProfileFragment : Fragment() {
         dialog.show()
     }
 
-    private fun editProfileDialogue(title: String) {
-        val builder = AlertDialog.Builder(activity)
-        builder.setIcon(android.R.drawable.ic_menu_edit)
-        builder.setTitle(title)
-        val ETName = EditText(activity)
-        val ETEmail = EditText(activity)
-        ETName.hint = "Updated profile name"
-        ETEmail.hint = "Updated email address"
-        builder.setView(ETName)
-        builder.setView(ETEmail)
-        // Set the button actions (i.e. listeners), optional
-        builder.setPositiveButton("OK"){ dialog, which ->
-            // code to run when OK is pressed
-            val nameUpdate = ETName.text.toString()
-            val emailUpdate = ETEmail.text.toString()
-            if (nameUpdate.isNotEmpty()) {
-                profile_name.text = nameUpdate
-            }
-            if (emailUpdate.isNotEmpty()) {
-                profile_email.text = emailUpdate
-            }
-            Log.d(TAG, "Updated: $nameUpdate")
-            Log.d(TAG, "Updated: $emailUpdate")
-
-        }
-        builder.setNeutralButton("Cancel"){dialog, which ->
-            // code to run when Cancel is pressed
-        }
-        // create the dialog and show it
-        val dialog = builder.create()
-        dialog.show()
-    }
+//    private fun editProfileDialogue(title: String) {
+//        val builder = AlertDialog.Builder(activity)
+//        builder.setIcon(android.R.drawable.ic_menu_edit)
+//        builder.setTitle(title)
+//        val ETName = EditText(activity)
+//        val ETEmail = EditText(activity)
+//        ETName.hint = "Updated profile name"
+//        ETEmail.hint = "Updated email address"
+//        builder.setView(ETName)
+//        builder.setView(ETEmail)
+//        // Set the button actions (i.e. listeners), optional
+//        builder.setPositiveButton("OK"){ dialog, which ->
+//            // code to run when OK is pressed
+//            val nameUpdate = ETName.text.toString()
+//            val emailUpdate = ETEmail.text.toString()
+//            if (nameUpdate.isNotEmpty()) {
+//                profile_name.text = nameUpdate
+//            }
+//            if (emailUpdate.isNotEmpty()) {
+//                profile_email.text = emailUpdate
+//            }
+//            Log.d(TAG, "Updated: $nameUpdate")
+//            Log.d(TAG, "Updated: $emailUpdate")
+//
+//        }
+//        builder.setNeutralButton("Cancel"){ dialog, which ->
+//            // code to run when Cancel is pressed
+//        }
+//        // create the dialog and show it
+//        val dialog = builder.create()
+//        dialog.show()
+//    }
 }

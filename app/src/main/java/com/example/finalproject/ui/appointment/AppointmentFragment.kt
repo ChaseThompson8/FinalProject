@@ -19,16 +19,15 @@ import java.util.*
 
 class AppointmentFragment : Fragment() {
 
-    private lateinit var appointmentViewModel: AppointmentViewModel
+//    private lateinit var appointmentViewModel: AppointmentViewModel
     val TAG = "AppointmentFragment"
     private val REQUEST_CODE = 88
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        appointmentViewModel = ViewModelProvider(this).get(AppointmentViewModel::class.java)
+            savedInstanceState: Bundle?): View? {
+//        appointmentViewModel = ViewModelProvider(this).get(AppointmentViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_appointment, container, false)
 
         // Check to see if the user changes the date on the calendar, convert it into a string and store in a variable

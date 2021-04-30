@@ -35,4 +35,9 @@
     <string name="year_of_vehicle">Year of vehicle</string>
     <string name="model_of_vehicle">Model of vehicle</string>
     <string name="edit_appointment">If you would like to change anything about your appointment you can navigate to your profile, find the appointment under "Appointment History" and click on it</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="change_profile_picture">Change profile Picture:</string>
+    <string name="change_name">Change name</string>
+    <string name="change_email">Change email</string>
+    <string name="edit">Edit</string>
 </resources>

@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.fragment_confirmation.view.*
 
 class ConfirmationFragment : Fragment() {
 
-    private lateinit var confirmationViewModel: ConfirmationViewModel
     val TAG = "ConfirmationFragment"
     var make = ""
     var model = ""
@@ -25,7 +24,7 @@ class ConfirmationFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
-        confirmationViewModel = ViewModelProvider(this).get(ConfirmationViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_confirmation, container, false)
 
         val sharedPreference = activity?.getPreferences(Context.MODE_PRIVATE)
