@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
         homeList.add("3")
         homeList.add("4")
         homeList.add("5")
+
         homeList.add("6")
 
         // List View
