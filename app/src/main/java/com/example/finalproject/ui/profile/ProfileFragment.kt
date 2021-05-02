@@ -150,18 +150,6 @@ class ProfileFragment : Fragment() {
 
     }
 
-//    private fun generateContact(size: Int) : ArrayList<AppointmentHistory>{
-//
-//        val contacts = ArrayList<AppointmentHistory>()
-//
-//        // The for loop will generate [size] amount of contact data and store in a list
-//        for (i in 1..size) {
-//            val person = AppointmentHistory("Num-$i 4/20/21", "Damage repair", "car", "details")
-//            contacts.add(person)
-//        }
-//        // return the list of contacts
-//        return contacts
-//    }
 
     private fun updateDialog(title: String, msg: String, pos: Int) {
         val builder = AlertDialog.Builder(activity)
@@ -209,9 +197,16 @@ class ProfileFragment : Fragment() {
         val dialog = builder.create()
         dialog.show()
     }
-    private fun setItems(){
 
+    private fun generateContact(size: Int) : ArrayList<AppointmentHistory>{
+        val contacts = ArrayList<AppointmentHistory>()
+        for (i in 1..size) {
+            val person = AppointmentHistory("Num-$i 4/20/21", "Damage repair", "car", "details")
+           contacts.add(person)
+        }
+            return contacts
     }
+
 //    private fun editProfileDialogue(title: String) {
 //        val builder = AlertDialog.Builder(activity)
 //        builder.setIcon(android.R.drawable.ic_menu_edit)
