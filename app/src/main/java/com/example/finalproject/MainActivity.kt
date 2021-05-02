@@ -16,6 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import android.util.Log
 import android.content.ContentValues.TAG
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.row_item.*
 //
 import com.google.firebase.firestore.ktx.toObjects
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.ktx.toObjects
 
 class MainActivity : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
+    lateinit var RecyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         ///
+        RecyclerView = findViewById(R.id.profile_rv)
+        populateList()
     }
     fun getData(){
 
@@ -86,5 +90,7 @@ class MainActivity : AppCompatActivity() {
                     //showDialog("Error", "Error getting documents")
                 }
     }
+    fun populateList(){
 
+    }
 }

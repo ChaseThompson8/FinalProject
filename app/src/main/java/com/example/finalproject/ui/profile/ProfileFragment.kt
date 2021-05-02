@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.AppointmentHistory
+import com.example.finalproject.MainActivity
 import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
@@ -208,7 +209,9 @@ class ProfileFragment : Fragment() {
         val dialog = builder.create()
         dialog.show()
     }
+    private fun setItems(){
 
+    }
 //    private fun editProfileDialogue(title: String) {
 //        val builder = AlertDialog.Builder(activity)
 //        builder.setIcon(android.R.drawable.ic_menu_edit)
