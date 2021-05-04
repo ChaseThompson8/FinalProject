@@ -34,7 +34,7 @@
         tools:layout="@layout/fragment_confirmation" />
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.finalproject.EditProfileFragment"
+        android:name="com.example.finalproject.ui.profile.EditProfileFragment"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile" />
 </navigation>

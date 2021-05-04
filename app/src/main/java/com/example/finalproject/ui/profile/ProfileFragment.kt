@@ -1,6 +1,7 @@
 package com.example.finalproject.ui.profile
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -27,6 +29,9 @@ class ProfileFragment : Fragment() {
     private val TAG = "ProfileFragment"
     private val maintenanceList = ArrayList<String>()
     private val maintenanceList2 = ArrayList<String>()
+    private var newName = ""
+    private var newEmail = ""
+    private var newPic = ""
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -58,6 +63,14 @@ class ProfileFragment : Fragment() {
         maintenanceAdapter2 = ArrayAdapter<String>(root.context, android.R.layout.simple_list_item_1, maintenanceList2)
         root.lv_maintain2.adapter = maintenanceAdapter2
 
+        val sharedPreference = activity?.getPreferences(Context.MODE_PRIVATE)
+        val name = sharedPreference?.getString("Name", newName) ?: ""
+        val email = sharedPreference?.getString("Email", newEmail) ?: ""
+        val pic = sharedPreference?.getString("Pic", newPic) ?: ""
+
+        root.profile_name.text = name
+        root.profile_email.text = email
+        root.profile_img.setImageURI(pic.toUri())
 
         root.lv_maintain.setOnItemClickListener { _, _, position, _ ->
 
