@@ -6,41 +6,108 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <ImageView
-        android:id="@+id/home_image"
-        android:layout_width="220dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="8dp"
-        android:src="@android:drawable/ic_menu_gallery"
-        app:layout_constraintBottom_toTopOf="@+id/list_view"
+    <TextView
+        android:id="@+id/phone_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/phone_number"
+        app:layout_constraintBottom_toTopOf="@+id/address_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/company_name" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/company_name"
         style="@android:style/Widget.TextView.PopupMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/the_shop"
         android:textSize="30sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/home_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="411dp"
-        android:layout_height="400dp"
+    <Button
+        android:id="@+id/review_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/reviews"
+        app:layout_constraintBottom_toTopOf="@+id/phone_text"
+        app:layout_constraintEnd_toStartOf="@+id/leave_review_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/book_button" />
+
+    <Button
+        android:id="@+id/book_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="4dp"
+        android:text="@string/book_appointment"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/review_button"
+        app:layout_constraintEnd_toStartOf="@+id/about_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_img" />
+
+    <Button
+        android:id="@+id/about_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/about_us"
+        app:layout_constraintBottom_toTopOf="@+id/leave_review_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/book_button"
+        app:layout_constraintTop_toBottomOf="@+id/home_img" />
+
+    <ImageView
+        android:id="@+id/home_img"
+        android:layout_width="0dp"
+        android:layout_height="270dp"
+        android:src="@drawable/musclecar2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_image" />
+        app:layout_constraintTop_toBottomOf="@+id/company_name" />
+
+    <TextView
+        android:id="@+id/address_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/our_address"
+        app:layout_constraintBottom_toTopOf="@+id/hours_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/hours_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/hours"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/leave_review_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/leave_a_review"
+        app:layout_constraintBottom_toTopOf="@+id/phone_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/review_button"
+        app:layout_constraintTop_toBottomOf="@+id/about_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
