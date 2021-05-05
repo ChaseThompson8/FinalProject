@@ -37,4 +37,19 @@
         android:name="com.example.finalproject.ui.profile.EditProfileFragment"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.finalproject.AboutFragment"
+        android:label="About Us"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/reviewsFragment"
+        android:name="com.example.finalproject.ReviewsFragment"
+        android:label="Our Reviews"
+        tools:layout="@layout/fragment_reviews" />
+    <fragment
+        android:id="@+id/makeReviewFragment"
+        android:name="com.example.finalproject.MakeReviewFragment"
+        android:label="Leave A Review"
+        tools:layout="@layout/fragment_make_review" />
 </navigation>

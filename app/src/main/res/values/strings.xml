@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Bottom Navigation Example</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -34,10 +34,26 @@
     <string name="other">Other</string>
     <string name="year_of_vehicle">Year of vehicle</string>
     <string name="model_of_vehicle">Model of vehicle</string>
-    <string name="edit_appointment">If you would like to change anything about your appointment you can navigate to your profile, find the appointment under "Appointment History" and click on it</string>
+    <string name="edit_appointment">If you would like to change anything about your appointment you
+        can navigate to your profile, find the appointment under "Appointment History" and click on
+        it</string>
     <string name="save_changes">Save Changes</string>
     <string name="change_profile_picture">Change profile Picture:</string>
     <string name="change_name">Change name</string>
     <string name="change_email">Change email</string>
     <string name="edit">Edit</string>
+    <string name="about_desc">THE SHOP\'s main goal is to do it right
+        the first time. We strive for excellent service and quick repairs. There\'s no upselling or
+        extra fees when working with us because we want to give you the best, most honest experience
+        possible to get your car back to you in better shape than ever.</string>
+    <string name="about_the_shop">About THE SHOP:</string>
+    <string name="leave_a_review">Leave a review</string>
+    <string name="phone_number">Phone number: 860-123-4567</string>
+    <string name="our_address">Our address: 123 Main Street, CT</string>
+    <string name="hours">Hours: Monday-Friday: 8:00 AM to 5:00 PM</string>
+    <string name="reviews">Reviews</string>
+    <string name="book_appointment">Book Appointment</string>
+    <string name="about_us">About us</string>
+    <string name="review_us">Review Us!</string>
+    <string name="explain_your_rating_here">Explain your rating here!</string>
 </resources>
