@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
-import kotlinx.android.synthetic.main.fragment_appointment.*
 import kotlinx.android.synthetic.main.fragment_make_review.*
 import kotlinx.android.synthetic.main.fragment_make_review.view.*
 
@@ -25,7 +24,7 @@ class MakeReviewFragment : Fragment() {
             val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             val review = user_review_text.text.toString()
-            val rating = rating_bar.rating.toString()
+            val rating = review_rating.rating.toString()
 
             if (review.isEmpty() || rating.isEmpty()){
                 showDialogue("Missing Info", "Please select a rating and give a " +
