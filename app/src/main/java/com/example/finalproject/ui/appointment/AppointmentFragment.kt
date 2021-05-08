@@ -8,13 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.motion.utils.Oscillator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.finalproject.R
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_appointment.*
 import kotlinx.android.synthetic.main.fragment_appointment.view.*
+import kotlinx.android.synthetic.main.fragment_make_review.*
 import java.util.*
 
 class AppointmentFragment : Fragment() {
@@ -48,6 +51,28 @@ class AppointmentFragment : Fragment() {
             var maintenance = false
             var repair = false
             var other = false
+
+            val db = FirebaseFirestore.getInstance()
+           //Update Calender Item
+            val data=hashMapOf(
+                    "DamageRepair" to repair_box.isChecked,
+                    "Maintenance" to maintenance_box.isChecked,
+                    "vehicleMake" to make_text.text.toString(),
+                    "vehicleModel" to model_text.text.toString(),
+                    "Other" to other_box.isChecked,
+                    "vehicleDate" to calendar_item.dateTextAppearance.toString(),
+                    "vehicleDetails" to details_text.text.toString(),
+                    "vehicleYear" to year_text.text.toString()
+            )
+            db.collection("Make_Appointment").add(data)
+                    .addOnSuccessListener{
+                        documentReference -> Log.d(Oscillator.TAG,"DocumentSnapshot written with ID:${documentReference.id}")
+                    }
+                    .addOnFailureListener{
+                        e->
+                        Log.w(Oscillator.TAG,"Error adding document",e)
+                    }
+
 
             // Check to see what check boxes are clicked
             if (maintenance_box.isChecked) {

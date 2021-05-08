@@ -1,6 +1,7 @@
 package com.example.finalproject
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_reviews.view.*
 import com.example.finalproject.ReviewData
 import kotlinx.android.synthetic.main.review_item.*
+import android.widget.RatingBar
+import android.*
+import com.google.firebase.firestore.*
+import kotlinx.android.synthetic.main.fragment_appointment.*
+
+
 
 class ReviewsFragment : Fragment() {
     lateinit var reviewAdapter: ReviewAdapter

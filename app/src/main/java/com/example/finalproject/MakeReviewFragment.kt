@@ -2,14 +2,29 @@ package com.example.finalproject
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_make_review.*
+import kotlinx.android.synthetic.main.fragment_make_review.review_rating
 import kotlinx.android.synthetic.main.fragment_make_review.view.*
+import kotlinx.android.synthetic.main.review_item.*
+//
+
+import kotlinx.android.synthetic.main.fragment_reviews.view.*
+
+import android.*
+import android.nfc.Tag
+import androidx.constraintlayout.motion.utils.Oscillator.TAG
+
+import com.google.firebase.firestore.*
+import kotlinx.android.synthetic.main.fragment_appointment.*
+//
 
 class MakeReviewFragment : Fragment() {
 
@@ -25,7 +40,23 @@ class MakeReviewFragment : Fragment() {
             val editor = sharedPreferences.edit()
             val review = user_review_text.text.toString()
             val rating = review_rating.rating.toString()
+            //
 
+            val db = FirebaseFirestore.getInstance()
+            val data=hashMapOf(
+                    "Details" to user_review_text.text.toString(),
+                    "Rating" to review_rating.numStars.toFloat()
+            )
+            db.collection("Make_Review").add(data)
+                    .addOnSuccessListener{
+                        documentReference -> Log.d(TAG,"DocumentSnapshot written with ID:${documentReference.id}")
+                    }
+                    .addOnFailureListener{
+                        e->
+                        Log.w(TAG,"Error adding document",e)
+                    }
+
+            //
             if (review.isEmpty() || rating.isEmpty()){
                 showDialogue("Missing Info", "Please select a rating and give a " +
                         "description for your rating then click submit")
@@ -41,7 +72,6 @@ class MakeReviewFragment : Fragment() {
         }
         return root
     }
-
     private fun showDialogue(title: String, message: String) {
         val builder = activity?.let { AlertDialog.Builder(it) }
         builder?.setTitle(title)
