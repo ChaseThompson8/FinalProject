@@ -1,7 +1,7 @@
 package com.example.finalproject.ui.appointment
 
+//
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,19 +10,18 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.motion.utils.Oscillator
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.finalproject.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_appointment.*
 import kotlinx.android.synthetic.main.fragment_appointment.view.*
 import kotlinx.android.synthetic.main.fragment_make_review.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AppointmentFragment : Fragment() {
 
-//    private lateinit var appointmentViewModel: AppointmentViewModel
+//   private lateinit var appointmentViewModel: AppointmentViewModel
     val TAG = "AppointmentFragment"
     private val REQUEST_CODE = 88
 
@@ -39,7 +38,7 @@ class AppointmentFragment : Fragment() {
             val month1 = month+1
             date = "$month1/$dayOfMonth/$year"
         }
-
+        //"yyyy.MM.dd G 'at' HH:mm:ss z"
         root.submit_button.setOnClickListener {
 
             val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
@@ -55,22 +54,20 @@ class AppointmentFragment : Fragment() {
             val db = FirebaseFirestore.getInstance()
            //Update Calender Item
             val data=hashMapOf(
-                    "DamageRepair" to repair_box.isChecked,
-                    "Maintenance" to maintenance_box.isChecked,
+                    "DamageRepair" to repair_box.isChecked.toString(),
+                    "Maintenance" to maintenance_box.isChecked.toString(),
                     "vehicleMake" to make_text.text.toString(),
                     "vehicleModel" to model_text.text.toString(),
-                    "Other" to other_box.isChecked,
-                    "vehicleDate" to calendar_item.dateTextAppearance.toString(),
+                    "Other" to other_box.isChecked.toString(),
+                    "vehicleDate" to calendar_item.date.toFloat(),
                     "vehicleDetails" to details_text.text.toString(),
                     "vehicleYear" to year_text.text.toString()
             )
             db.collection("Make_Appointment").add(data)
-                    .addOnSuccessListener{
-                        documentReference -> Log.d(Oscillator.TAG,"DocumentSnapshot written with ID:${documentReference.id}")
+                    .addOnSuccessListener{ documentReference -> Log.d(Oscillator.TAG, "DocumentSnapshot written with ID:${documentReference.id}")
                     }
-                    .addOnFailureListener{
-                        e->
-                        Log.w(Oscillator.TAG,"Error adding document",e)
+                    .addOnFailureListener{ e->
+                        Log.w(Oscillator.TAG, "Error adding document", e)
                     }
 
 
@@ -140,7 +137,6 @@ class AppointmentFragment : Fragment() {
 
         return root
     }
-
     private fun showDialogue(title: String, message: String) {
         val builder = activity?.let { AlertDialog.Builder(it) }
         builder?.setTitle(title)

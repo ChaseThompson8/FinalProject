@@ -1,7 +1,7 @@
 package com.example.finalproject
 
 //import com.firebase.
-import android.util.Log;
+import android.util.Log
 import android.*
 import android.os.Bundle
 import android.view.View
@@ -58,45 +58,4 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-    /*
-    fun addData(){
-        val db = FirebaseFirestore.getInstance()
-        val appointment = db.collection("cities")
-        val cityInfo = hashMapOf(
-                "Maintance" to "San Francisco",
-                "state" to "CA",
-                "country" to "USA",
-                "capital" to false,
-                "population" to 860000,
-                "regions" to listOf("west_coast"
-                        ,
-                        "norcal")
-        )
-        appointment.document.set(cityInfo)
-
-    }*/
-
-        /*
-
-        val mapFragment = SupportMapFragment.newInstance()
-        supportFragmentManager
-                .beginTransaction()
-                .add(R.id.nav_host_fragment, mapFragment)
-                .commit()
-    }   */
-    /*
-    * ...setQuery(..., new SnapshotParser<Chat>() {
-    @NonNull
-    @Override
-    public Chat parseSnapshot(@NonNull DataSnapshot snapshot) {
-        return ...;
-    }
-});
-    * *//*
-    fun addFirebase() {
-
-    */
-    //Google Maps
-
 }
