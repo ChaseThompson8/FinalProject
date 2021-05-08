@@ -190,10 +190,12 @@ class ProfileFragment : Fragment() {
         return root
 
     }
+
     override fun onStart() {
         super.onStart()
         appointmentAdapter.startListening()
     }
+
     override fun onStop() {
         super.onStop();
         appointmentAdapter.stopListening();
@@ -208,20 +210,21 @@ class ProfileFragment : Fragment() {
         ETUpdate.hint = "Updated $msg Date"
         builder.setView(ETUpdate)
         // Set the button actions (i.e. listeners), optional
-        builder.setPositiveButton("OK"){ dialog, which ->
+        builder.setPositiveButton("OK") { dialog, which ->
             // code to run when OK is pressed
             userUpdate = ETUpdate.text.toString()
             maintenanceList[pos] = "$msg: $userUpdate"
             maintenanceAdapter.notifyDataSetChanged()
             Log.d(TAG, "Updated: $userUpdate")
         }
-        builder.setNeutralButton("Cancel"){ dialog, which ->
+        builder.setNeutralButton("Cancel") { dialog, which ->
             // code to run when Cancel is pressed
         }
         // create the dialog and show it
         val dialog = builder.create()
         dialog.show()
     }
+
     private fun updateDialog2(title: String, msg: String, pos: Int) {
         val builder = AlertDialog.Builder(activity)
         var userUpdate = ""
@@ -231,14 +234,14 @@ class ProfileFragment : Fragment() {
         ETUpdate.hint = "Updated $msg Date"
         builder.setView(ETUpdate)
         // Set the button actions (i.e. listeners), optional
-        builder.setPositiveButton("OK"){ dialog, which ->
+        builder.setPositiveButton("OK") { dialog, which ->
             // code to run when OK is pressed
             userUpdate = ETUpdate.text.toString()
             maintenanceList2[pos] = "$msg: $userUpdate"
             maintenanceAdapter2.notifyDataSetChanged()
             Log.d(TAG, "Updated: $userUpdate")
         }
-        builder.setNeutralButton("Cancel"){ dialog, which ->
+        builder.setNeutralButton("Cancel") { dialog, which ->
             // code to run when Cancel is pressed
         }
         // create the dialog and show it
@@ -246,6 +249,7 @@ class ProfileFragment : Fragment() {
         dialog.show()
     }
 
+/*
     private fun generateContact(size: Int) : ArrayList<AppointmentHistory>{
         val contacts = ArrayList<AppointmentHistory>()
         for (i in 1..size) {
@@ -264,7 +268,6 @@ class ProfileFragment : Fragment() {
         return contacts
     }
 
-/*
     private fun editProfileDialogue(title: String) {
        val builder = AlertDialog.Builder(activity)
         builder.setIcon(android.R.drawable.ic_menu_edit)

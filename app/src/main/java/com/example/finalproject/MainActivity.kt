@@ -1,9 +1,12 @@
 package com.example.finalproject
 
 //import com.firebase.
-
+import android.util.Log;
 import android.*
 import android.os.Bundle
+import android.view.View
+import android.widget.RatingBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,12 +21,17 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_make_review.*
+import kotlinx.android.synthetic.main.review_item.*
+
 //
 
 class MainActivity : AppCompatActivity() {
     val TAG = "MyActivity"
-    var db = FirebaseFirestore.getInstance()
-    val usersCollectionRef = db.collection("Make_Appointment")
+    lateinit var Rating_Bar : RatingBar
+    lateinit var Details_Text : TextView
+
     private lateinit var mMap: GoogleMap
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,28 +54,29 @@ class MainActivity : AppCompatActivity() {
         // Create a instance of the database and get
         // its reference
 
-        val query = usersCollectionRef
-        val options: FirestoreRecyclerOptions<AppointmentHistory> = FirestoreRecyclerOptions.Builder<AppointmentHistory>()
-                .setQuery(query, AppointmentHistory::class.java)
-                .build()
+        // set on-click listener
+
+
     }
-    private fun generateContact(size: Int) : ArrayList<AppointmentHistory>{
-        val contacts = ArrayList<AppointmentHistory>()
-        for (i in 1..size) {
-            val person = AppointmentHistory(
-                    false,
-                    false,
-                    "Bruh",
-                    "Ford",
-                    false,
-                    "5/18/19",
-                    "Bruh",
-                    1995
-            )
-            contacts.add(person)
-        }
-        return contacts
-    }
+
+    /*
+    fun addData(){
+        val db = FirebaseFirestore.getInstance()
+        val appointment = db.collection("cities")
+        val cityInfo = hashMapOf(
+                "Maintance" to "San Francisco",
+                "state" to "CA",
+                "country" to "USA",
+                "capital" to false,
+                "population" to 860000,
+                "regions" to listOf("west_coast"
+                        ,
+                        "norcal")
+        )
+        appointment.document.set(cityInfo)
+
+    }*/
+
         /*
 
         val mapFragment = SupportMapFragment.newInstance()

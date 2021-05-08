@@ -1,3 +1,5 @@
 package com.example.finalproject
 
-data class ReviewData(val rating: String, val description: String)
+data class ReviewData(val Details: String? = null,
+                      val Rating: Float? = null
+)
