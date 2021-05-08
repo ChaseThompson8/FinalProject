@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_appointment.*
 import kotlinx.android.synthetic.main.fragment_appointment.view.*
 import kotlinx.android.synthetic.main.fragment_make_review.*
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -53,13 +54,14 @@ class AppointmentFragment : Fragment() {
 
             val db = FirebaseFirestore.getInstance()
            //Update Calender Item
+
             val data=hashMapOf(
-                    "DamageRepair" to repair_box.isChecked.toString(),
-                    "Maintenance" to maintenance_box.isChecked.toString(),
+                    "DamageRepair" to repair_box.isChecked,
+                    "Maintenance" to maintenance_box.isChecked,
                     "vehicleMake" to make_text.text.toString(),
                     "vehicleModel" to model_text.text.toString(),
-                    "Other" to other_box.isChecked.toString(),
-                    "vehicleDate" to calendar_item.date.toFloat(),
+                    "Other" to other_box.isChecked,
+                    "vehicleDate" to Timestamp(calendar_item.date),
                     "vehicleDetails" to details_text.text.toString(),
                     "vehicleYear" to year_text.text.toString()
             )

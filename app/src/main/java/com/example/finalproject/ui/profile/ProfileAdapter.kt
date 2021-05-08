@@ -9,7 +9,7 @@ import com.example.finalproject.AppointmentHistory
 import com.example.finalproject.R
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-
+import java.time.*
 class ProfileAdapter(options: FirestoreRecyclerOptions<AppointmentHistory>) :
     FirestoreRecyclerAdapter<AppointmentHistory, ProfileAdapter.MyViewHolder>(options) {
     val ints = 0;
@@ -26,8 +26,11 @@ class ProfileAdapter(options: FirestoreRecyclerOptions<AppointmentHistory>) :
         return MyViewHolder(view)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, model: AppointmentHistory) {
-        holder.apptDate.text = "Date: "+model.vehicleDate.toString()
-        holder.apptType.text = model.Maintenance.toString() + model.DamageRepair.toString() + model.Other.toString()
+        val text = model.Maintenance.takeIf {model.Maintenance ==true}?.let { "Maintenance " }?:let { "" }
+        val text_2 = model.DamageRepair.takeIf {model.DamageRepair==true}?.let { "DamageRepair " }?:let { "" }
+        val text_3 =  model.Other.takeIf { model.Other ==true}?.let { "Other " }?:let { "" }
+        holder.apptDate.text = "Date: "+ (model.vehicleDate?.toDate() ?: 1)
+        holder.apptType.text =  text + text_2 +text_3
         holder.apptVehicle.text = "Car: " +model.vehicleYear.toString() + model.vehicleMake.toString() + model.vehicleModel.toString()
         holder.apptDetails.text = "Details: "+ model.vehicleDetails.toString()
 
