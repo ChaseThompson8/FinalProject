@@ -17,8 +17,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.AppointmentHistory
-import com.example.finalproject.MainActivity
 import com.example.finalproject.R
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
@@ -34,10 +35,14 @@ class ProfileFragment : Fragment() {
     private var newEmail = ""
     private var newPic = ""
 
+
+    lateinit var appointmentAdapter: ProfileAdapter
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
-            savedInstanceState: Bundle?): View? {
+            savedInstanceState: Bundle?
+    ): View? {
 
         profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
@@ -57,11 +62,19 @@ class ProfileFragment : Fragment() {
         maintenanceList2.add("Timing belt: ")
 
         // List View
-        maintenanceAdapter = ArrayAdapter<String>(root.context, android.R.layout.simple_list_item_1, maintenanceList)
+        maintenanceAdapter = ArrayAdapter<String>(
+                root.context,
+                android.R.layout.simple_list_item_1,
+                maintenanceList
+        )
         root.lv_maintain.adapter = maintenanceAdapter
 
         // List View
-        maintenanceAdapter2 = ArrayAdapter<String>(root.context, android.R.layout.simple_list_item_1, maintenanceList2)
+        maintenanceAdapter2 = ArrayAdapter<String>(
+                root.context,
+                android.R.layout.simple_list_item_1,
+                maintenanceList2
+        )
         root.lv_maintain2.adapter = maintenanceAdapter2
 
         val sharedPreference = activity?.getPreferences(Context.MODE_PRIVATE)
@@ -138,22 +151,37 @@ class ProfileFragment : Fragment() {
         }
 
         // Define an array to store a list of users
-        val apptList = ArrayList<AppointmentHistory>()
+        // its reference
+
+
+        val db = FirebaseFirestore.getInstance()
+        val usersCollectionRef = db.collection("Make_Appointment")
+
+
+        val query = usersCollectionRef
+
+        val options: FirestoreRecyclerOptions<AppointmentHistory> = FirestoreRecyclerOptions.Builder<AppointmentHistory>()
+                .setQuery(query, AppointmentHistory::class.java)
+                .build()
+
 
         // specify a viewAdapter for the data set
-        val adapter = ProfileAdapter(apptList)
+        appointmentAdapter = ProfileAdapter(options)
 
         // Store the the recyclerView widget in a variable
         val recyclerView = root.findViewById<RecyclerView>(R.id.profile_rv)
 
         // specify an viewAdapter for the dataset (we use dummy data containing 20 contacts)
-        recyclerView.adapter = adapter
+        recyclerView.adapter = appointmentAdapter
 
         // use a linear layout manager, you can use different layouts as well
         recyclerView.layoutManager = LinearLayoutManager(root.context)
 
         // Add a divider between rows -- Optional
-        val dividerItemDecoration = DividerItemDecoration(root.context, DividerItemDecoration.VERTICAL)
+        val dividerItemDecoration = DividerItemDecoration(
+                root.context,
+                DividerItemDecoration.VERTICAL
+        )
         recyclerView.addItemDecoration(dividerItemDecoration)
 
         // Ability to find appointments and change them
@@ -162,7 +190,14 @@ class ProfileFragment : Fragment() {
         return root
 
     }
-
+    override fun onStart() {
+        super.onStart()
+        appointmentAdapter.startListening()
+    }
+    override fun onStop() {
+        super.onStop();
+        appointmentAdapter.stopListening();
+    }
 
     private fun updateDialog(title: String, msg: String, pos: Int) {
         val builder = AlertDialog.Builder(activity)
@@ -174,14 +209,14 @@ class ProfileFragment : Fragment() {
         builder.setView(ETUpdate)
         // Set the button actions (i.e. listeners), optional
         builder.setPositiveButton("OK"){ dialog, which ->
-        // code to run when OK is pressed
+            // code to run when OK is pressed
             userUpdate = ETUpdate.text.toString()
             maintenanceList[pos] = "$msg: $userUpdate"
             maintenanceAdapter.notifyDataSetChanged()
             Log.d(TAG, "Updated: $userUpdate")
         }
         builder.setNeutralButton("Cancel"){ dialog, which ->
-        // code to run when Cancel is pressed
+            // code to run when Cancel is pressed
         }
         // create the dialog and show it
         val dialog = builder.create()
@@ -214,42 +249,52 @@ class ProfileFragment : Fragment() {
     private fun generateContact(size: Int) : ArrayList<AppointmentHistory>{
         val contacts = ArrayList<AppointmentHistory>()
         for (i in 1..size) {
-            val person = AppointmentHistory("Num-$i 4/20/21", "Damage repair", "car", "details")
-           contacts.add(person)
+            val person = AppointmentHistory(
+                    false,
+                    false,
+                    "Bruh",
+                    "Ford",
+                    false,
+                    "5/18/19",
+                    "Bruh",
+                    1995
+            )
+            contacts.add(person)
         }
-            return contacts
+        return contacts
     }
 
-//    private fun editProfileDialogue(title: String) {
-//        val builder = AlertDialog.Builder(activity)
-//        builder.setIcon(android.R.drawable.ic_menu_edit)
-//        builder.setTitle(title)
-//        val ETName = EditText(activity)
-//        val ETEmail = EditText(activity)
-//        ETName.hint = "Updated profile name"
-//        ETEmail.hint = "Updated email address"
-//        builder.setView(ETName)
-//        builder.setView(ETEmail)
-//        // Set the button actions (i.e. listeners), optional
-//        builder.setPositiveButton("OK"){ dialog, which ->
-//            // code to run when OK is pressed
-//            val nameUpdate = ETName.text.toString()
-//            val emailUpdate = ETEmail.text.toString()
-//            if (nameUpdate.isNotEmpty()) {
-//                profile_name.text = nameUpdate
-//            }
-//            if (emailUpdate.isNotEmpty()) {
-//                profile_email.text = emailUpdate
-//            }
-//            Log.d(TAG, "Updated: $nameUpdate")
-//            Log.d(TAG, "Updated: $emailUpdate")
-//
-//        }
-//        builder.setNeutralButton("Cancel"){ dialog, which ->
-//            // code to run when Cancel is pressed
-//        }
-//        // create the dialog and show it
-//        val dialog = builder.create()
-//        dialog.show()
-//    }
+/*
+    private fun editProfileDialogue(title: String) {
+       val builder = AlertDialog.Builder(activity)
+        builder.setIcon(android.R.drawable.ic_menu_edit)
+        builder.setTitle(title)
+        val ETName = EditText(activity)
+        val ETEmail = EditText(activity)
+        ETName.hint = "Updated profile name"
+        ETEmail.hint = "Updated email address"
+        builder.setView(ETName)
+        builder.setView(ETEmail)
+        // Set the button actions (i.e. listeners), optional
+        builder.setPositiveButton("OK"){ dialog, which ->
+            // code to run when OK is pressed
+            val nameUpdate = ETName.text.toString()
+            val emailUpdate = ETEmail.text.toString()
+            if (nameUpdate.isNotEmpty()) {
+                profile_name.text = nameUpdate
+            }
+            if (emailUpdate.isNotEmpty()) {
+                profile_email.text = emailUpdate
+            }
+            Log.d(TAG, "Updated: $nameUpdate")
+            Log.d(TAG, "Updated: $emailUpdate")
+
+        }
+        builder.setNeutralButton("Cancel"){ dialog, which ->
+            // code to run when Cancel is pressed
+        }
+       // create the dialog and show it
+        val dialog = builder.create()
+        dialog.show()
+   }*/
 }

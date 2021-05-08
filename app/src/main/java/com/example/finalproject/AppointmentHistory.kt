@@ -2,4 +2,12 @@ package com.example.finalproject
 
 import com.google.firebase.Timestamp
 
-data class AppointmentHistory(val date: String, val type: String, val vehicle: String, val details: String)
+data class AppointmentHistory( var DamageRepair: Boolean? = null,
+                               var Maintenance: Boolean? = null,
+                               var vehicleMake: String? = null,
+                               var vehicleModel: String? = null,
+                               var Other: Boolean? = null,
+                               var vehicleDate: String? = null,
+                               var vehicleDetails: String? = null,
+                               var vehicleYear: Int? = null
+)

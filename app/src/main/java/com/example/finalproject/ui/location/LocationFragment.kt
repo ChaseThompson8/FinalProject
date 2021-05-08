@@ -19,6 +19,8 @@ class LocationFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+
+
         locationViewModel =
                 ViewModelProvider(this).get(LocationViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_location, container, false)
