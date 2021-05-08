@@ -126,4 +126,5 @@ class AppointmentFragment : Fragment() {
         val dialog = builder?.create()
         dialog?.show()
     }
+
 }
