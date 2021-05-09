@@ -33,7 +33,5 @@ class ProfileAdapter(options: FirestoreRecyclerOptions<AppointmentHistory>) :
         holder.apptType.text =  text + text_2 +text_3
         holder.apptVehicle.text = "Car: " +model.vehicleYear.toString() + model.vehicleMake.toString() + model.vehicleModel.toString()
         holder.apptDetails.text = "Details: "+ model.vehicleDetails.toString()
-
-
     }
 }
