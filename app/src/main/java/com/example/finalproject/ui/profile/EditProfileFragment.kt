@@ -16,6 +16,7 @@ import androidx.navigation.Navigation
 import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_edit_profile.view.*
+import java.io.ByteArrayOutputStream
 
 
 class EditProfileFragment : Fragment() {
@@ -75,6 +76,9 @@ class EditProfileFragment : Fragment() {
             // context = myContext, and then use context.contentResolver instead.
             bitmap = BitmapFactory.decodeStream(inputStream)
 //            profile_img.setImageBitmap(bitmap)
+            val stream = ByteArrayOutputStream()
+            bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+            val imageInByte: ByteArray = stream.toByteArray()
         }
     }
 
