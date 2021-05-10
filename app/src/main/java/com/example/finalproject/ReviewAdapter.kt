@@ -10,7 +10,6 @@ import com.example.finalproject.R
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import android.widget.RatingBar;
-import kotlinx.android.synthetic.main.review_item.view.*
 
 class ReviewAdapter(options: FirestoreRecyclerOptions<ReviewData>) :
 FirestoreRecyclerAdapter<ReviewData, ReviewAdapter.MyViewHolder>(options) {

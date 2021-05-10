@@ -1,7 +1,6 @@
 package com.example.finalproject.ui.profile
 
 import android.app.Activity.RESULT_OK
-import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,13 +11,11 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.createBitmap
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_edit_profile.view.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
 class EditProfileFragment : Fragment() {

@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var maintenanceAdapter: ArrayAdapter<String>
     private lateinit var maintenanceAdapter2: ArrayAdapter<String>
     private val TAG = "ProfileFragment"
@@ -44,7 +43,6 @@ class ProfileFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
 
         maintenanceList.add("Oil change: ")

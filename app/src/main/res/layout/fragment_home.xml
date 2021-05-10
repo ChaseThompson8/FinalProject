@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/phone_text"
+    <Button
+        android:id="@+id/call_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/phone_number"
-        app:layout_constraintBottom_toTopOf="@+id/address_text"
+        android:text="Call us"
+        app:layout_constraintBottom_toTopOf="@+id/hours_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -39,10 +39,9 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="24dp"
         android:text="@string/reviews"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/phone_text"
+        app:layout_constraintBottom_toTopOf="@+id/call_button"
         app:layout_constraintEnd_toStartOf="@+id/leave_review_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/book_button" />
@@ -86,15 +85,6 @@
         app:layout_constraintTop_toBottomOf="@+id/company_name" />
 
     <TextView
-        android:id="@+id/address_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/our_address"
-        app:layout_constraintBottom_toTopOf="@+id/hours_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/hours_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,10 +100,9 @@
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
         android:text="@string/leave_a_review"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/phone_text"
+        app:layout_constraintBottom_toTopOf="@+id/call_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/review_button"
         app:layout_constraintTop_toBottomOf="@+id/about_button" />

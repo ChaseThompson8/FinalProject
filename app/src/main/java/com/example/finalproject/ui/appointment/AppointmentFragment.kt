@@ -1,6 +1,5 @@
 package com.example.finalproject.ui.appointment
 
-//
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -15,17 +14,10 @@ import com.example.finalproject.R
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_appointment.*
 import kotlinx.android.synthetic.main.fragment_appointment.view.*
-import kotlinx.android.synthetic.main.fragment_make_review.*
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-import java.util.*
 import android.media.MediaPlayer
-import java.sql.Time
-import androidx.appcompat.app.AppCompatActivity
 
 class AppointmentFragment : Fragment() {
 
-//   private lateinit var appointmentViewModel: AppointmentViewModel
     val TAG = "AppointmentFragment"
     private val REQUEST_CODE = 88
     var myMediaPlayer : MediaPlayer? = null
@@ -34,7 +26,6 @@ class AppointmentFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
-//        appointmentViewModel = ViewModelProvider(this).get(AppointmentViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_appointment, container, false)
 
         // Check to see if the user changes the date on the calendar, convert it into a string and store in a variable
@@ -43,7 +34,7 @@ class AppointmentFragment : Fragment() {
             val month1 = month+1
             date = "$month1/$dayOfMonth/$year"
         }
-        //"yyyy.MM.dd G 'at' HH:mm:ss z"
+
         root.submit_button.setOnClickListener {
             val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
@@ -83,12 +74,6 @@ class AppointmentFragment : Fragment() {
                 showDialogue("Car info or details missing", "Please fill out the info " +
                         "for you vehicle and the details for the appointment")
             }
-//            else if (newDate < plusDay) {
-//                Log.d(TAG, "No date selected")
-//                showDialogue("Date of Appointment not specified",
-//                    "Please select the date you wish to schedule the appointment for.\n" +
-//                            "Make sure the date selected is at least one day from the current date")
-//            }
             else {
                 val db = FirebaseFirestore.getInstance()
                 //Update Calender Item
