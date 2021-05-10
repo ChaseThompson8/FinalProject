@@ -43,7 +43,7 @@ class EditProfileFragment : Fragment() {
 
             val newName = edit_name.text.toString()
             val newEmail = edit_email.text.toString()
-            val newPic = bitmap
+            val newPic = gallery.toString()
 
 
             if (newName.isNotEmpty()){
@@ -52,8 +52,8 @@ class EditProfileFragment : Fragment() {
             if (newEmail.isNotEmpty()){
                 editor.putString("Email", newEmail)
             }
-            if (newPic != null){
-
+            if (newPic.isNotEmpty()){
+                editor.putString("Pic", newPic)
             }
 
             editor.apply()
@@ -69,11 +69,12 @@ class EditProfileFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
             imageUri = data?.data
+            profile_img.setImageURI(imageUri)
             val inputStream = activity?.contentResolver?.openInputStream(imageUri!!)
             // Could also pass context into the function (myContext: Context), set
             // context = myContext, and then use context.contentResolver instead.
             bitmap = BitmapFactory.decodeStream(inputStream)
-            profile_img.setImageBitmap(bitmap)
+//            profile_img.setImageBitmap(bitmap)
         }
     }
 
