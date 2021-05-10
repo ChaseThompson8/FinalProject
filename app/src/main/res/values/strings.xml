@@ -68,4 +68,11 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="call_us">Call us</string>
+    <string name="coolant">coolant</string>
+    <string name="battery">battery</string>
+    <string name="update_dates">Update Dates</string>
+    <string name="oil">oil</string>
+    <string name="brakes">brakes</string>
+    <string name="transmission">transmission</string>
+    <string name="air_filter">air filter</string>
 </resources>

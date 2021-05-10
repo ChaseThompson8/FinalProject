@@ -42,8 +42,8 @@ class EditProfileFragment : Fragment() {
     }
         root.save_button.setOnClickListener {
 
-            val newName = edit_name.text.toString()
-            val newEmail = edit_email.text.toString()
+            val newName = name_edit.text.toString()
+            val newEmail = email_edit.text.toString()
             val newPic = gallery.toString()
 
 

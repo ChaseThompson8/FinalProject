@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/profile_name"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -27,13 +27,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/profile_email"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/email"
-        app:layout_constraintStart_toStartOf="@+id/profile_name"
-        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <Button
         android:id="@+id/edit_profile_btn"
@@ -45,8 +45,8 @@
         android:text="@string/edit_profile"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/profile_img"
-        app:layout_constraintStart_toStartOf="@+id/profile_email"
-        app:layout_constraintTop_toBottomOf="@+id/profile_email" />
+        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/profile_rv"
@@ -61,30 +61,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recent_text"
-        tools:listitem="@layout/row_item"/>
-
-    <ListView
-        android:id="@+id/lv_maintain"
-        android:layout_width="190dp"
-        android:layout_height="155dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:verticalScrollbarPosition="left"
-        app:layout_constraintEnd_toStartOf="@+id/lv_maintain2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <ListView
-        android:id="@+id/lv_maintain2"
-        android:layout_width="190dp"
-        android:layout_height="155dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lv_maintain"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        tools:listitem="@layout/row_item" />
 
     <TextView
         android:id="@+id/textView3"
@@ -106,7 +83,7 @@
         style="@android:style/Widget.Material.TextView.SpinnerItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/ricks_american"
         android:text="@string/appointment_history"
@@ -116,5 +93,72 @@
         app:layout_constraintBottom_toTopOf="@+id/profile_rv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lv_maintain" />
+        app:layout_constraintTop_toBottomOf="@+id/dates_button" />
+
+    <TextView
+        android:id="@+id/coolant_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/coolant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/battery_text" />
+
+    <TextView
+        android:id="@+id/brake_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/brakes"
+        app:layout_constraintStart_toStartOf="@+id/transmission_text"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/oil_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/oil"
+        app:layout_constraintStart_toStartOf="@+id/battery_text"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/battery_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/battery"
+        app:layout_constraintStart_toStartOf="@+id/coolant_text"
+        app:layout_constraintTop_toBottomOf="@+id/oil_text" />
+
+    <TextView
+        android:id="@+id/transmission_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/transmission"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brake_text" />
+
+    <TextView
+        android:id="@+id/air_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/air_filter"
+        app:layout_constraintStart_toStartOf="@+id/transmission_text"
+        app:layout_constraintTop_toBottomOf="@+id/transmission_text" />
+
+    <Button
+        android:id="@+id/dates_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/update_dates"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coolant_text" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

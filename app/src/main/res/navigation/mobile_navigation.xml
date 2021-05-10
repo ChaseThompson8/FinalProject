@@ -52,4 +52,9 @@
         android:name="com.example.finalproject.MakeReviewFragment"
         android:label="Leave A Review"
         tools:layout="@layout/fragment_make_review" />
+    <fragment
+        android:id="@+id/datesFragment"
+        android:name="com.example.finalproject.DatesFragment"
+        android:label="fragment_dates"
+        tools:layout="@layout/fragment_dates" />
 </navigation>

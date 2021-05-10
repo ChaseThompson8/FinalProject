@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DatesFragment">
+
+    <TextView
+        android:id="@+id/battery"
+        style="@android:style/Widget.TextView.PopupMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Battery:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oil_edit" />
+
+    <TextView
+        android:id="@+id/brakes"
+        style="@android:style/Widget.TextView.PopupMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Brakes:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coolant_edit" />
+
+    <TextView
+        android:id="@+id/transimission"
+        style="@android:style/Widget.TextView.PopupMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Transmission:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brake_edit" />
+
+    <TextView
+        android:id="@+id/air_filter"
+        style="@android:style/Widget.TextView.PopupMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Air Filter:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transmission_edit" />
+
+    <EditText
+        android:id="@+id/battery_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Update last battery change"
+        android:inputType="textEmailAddress"
+        android:scaleX=".85"
+        android:scaleY=".85"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/oil_edit"
+        app:layout_constraintTop_toBottomOf="@+id/battery" />
+
+    <EditText
+        android:id="@+id/brake_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Update last brake job"
+        android:inputType="textEmailAddress"
+        android:scaleX=".85"
+        android:scaleY=".85"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/oil_edit"
+        app:layout_constraintTop_toBottomOf="@+id/brakes" />
+
+    <EditText
+        android:id="@+id/transmission_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Update last transmission check"
+        android:inputType="textEmailAddress"
+        android:scaleX=".85"
+        android:scaleY=".85"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/oil_edit"
+        app:layout_constraintTop_toBottomOf="@+id/transimission" />
+
+    <EditText
+        android:id="@+id/air_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Update last air filter change"
+        android:inputType="textEmailAddress"
+        android:scaleX=".85"
+        android:scaleY=".85"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/oil_edit"
+        app:layout_constraintTop_toBottomOf="@+id/air_filter" />
+
+    <EditText
+        android:id="@+id/coolant_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Update last coolant change"
+        android:inputType="textEmailAddress"
+        android:scaleX=".85"
+        android:scaleY=".85"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/oil_edit"
+        app:layout_constraintTop_toBottomOf="@+id/coolant" />
+
+    <TextView
+        android:id="@+id/coolant"
+        style="@android:style/Widget.TextView.PopupMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Coolant:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/battery_edit" />
+
+    <TextView
+        android:id="@+id/oil"
+        style="@android:style/Widget.TextView.PopupMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Oil Change:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/oil_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="Update last oil change date"
+        android:inputType="textPersonName"
+        android:scaleX=".85"
+        android:scaleY=".85"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oil" />
+
+    <Button
+        android:id="@+id/save_dates_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/save_changes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/air_edit" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
