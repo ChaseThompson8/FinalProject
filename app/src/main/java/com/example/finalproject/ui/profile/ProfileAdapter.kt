@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject.AppointmentHistory
 import com.example.finalproject.R
@@ -21,6 +22,18 @@ class ProfileAdapter(options: FirestoreRecyclerOptions<AppointmentHistory>) :
         val apptType = itemView.findViewById<TextView>(R.id.appt_type)
         val apptVehicle = itemView.findViewById<TextView>(R.id.appt_vehicle)
         val apptDetails = itemView.findViewById<TextView>(R.id.appt_details)
+
+        // Set onClickListener to show a toast message for the selected row item in the list
+        init {
+            itemView.setOnClickListener{
+                val selectedItem = adapterPosition
+
+
+
+                Toast.makeText(itemView.context, "You clicked on $selectedItem",
+                    Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

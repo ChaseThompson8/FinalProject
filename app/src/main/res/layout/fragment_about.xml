@@ -45,9 +45,9 @@
         android:id="@+id/leave_review_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/leave_a_review"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/phone_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about_desc" />

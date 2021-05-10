@@ -120,20 +120,6 @@ class AppointmentFragment : Fragment() {
 
                 val navController = Navigation.findNavController(root)
                 navController.navigate(R.id.confirmationFragment)
-
-//                requireActivity().supportFragmentManager.beginTransaction()
-//                    .replace(R.id.nav_host_fragment, ConfirmationFragment())
-//                    .addToBackStack(null)
-//                    .commit()
-
-//                val myIntent = Intent(root.context, ConfirmationActivity::class.java)
-//
-//                myIntent.putExtra("Make", make)
-//                myIntent.putExtra("Model", model)
-//                myIntent.putExtra("Year", year)
-//                myIntent.putExtra("Date", date)
-//
-//                startActivityForResult(myIntent, REQUEST_CODE)
             }
 
         }
@@ -151,6 +137,5 @@ class AppointmentFragment : Fragment() {
         val dialog = builder?.create()
         dialog?.show()
     }
-
 
 }
