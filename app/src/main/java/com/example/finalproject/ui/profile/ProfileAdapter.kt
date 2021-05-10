@@ -31,9 +31,7 @@ class ProfileAdapter(options: FirestoreRecyclerOptions<AppointmentHistory>) :
         val text_3 =  model.Other.takeIf { model.Other ==true}?.let { "Other " }?:let { "" }
         holder.apptDate.text = "Date: "+  model.vehicleDate.toString()
         holder.apptType.text =  text + text_2 +text_3
-        holder.apptVehicle.text = "Car: " +model.vehicleYear.toString() + model.vehicleMake.toString() + model.vehicleModel.toString()
+        holder.apptVehicle.text = "Car: " +model.vehicleYear.toString() + " "+ model.vehicleMake.toString()+ " " + model.vehicleModel.toString()
         holder.apptDetails.text = "Details: "+ model.vehicleDetails.toString()
     }
-
-   // 1620610815148
 }

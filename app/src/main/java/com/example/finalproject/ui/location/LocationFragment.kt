@@ -25,31 +25,35 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import kotlinx.android.synthetic.main.fragment_location.*
 import android.content.Context
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.ListView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.fragment_location.view.*
+//
 
 class LocationFragment : Fragment(), OnMapReadyCallback {
     private lateinit var geocoder: Geocoder
     private val ACCESS_LOCATION_CODE = 125
-    private lateinit var locationViewModel: LocationViewModel
     private lateinit var mMap: GoogleMap
+    var myMediaPlayer : MediaPlayer? = null
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View? {
 
-        locationViewModel =
-                ViewModelProvider(this).get(LocationViewModel::class.java)
             val root = inflater.inflate(R.layout.fragment_location, container, false)
          root.searchButton.setOnClickListener {
             searchButton(root);
         }
-        return root
 
+
+        return root
 
         }
         override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -61,6 +65,28 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
             it.onResume()
             it.getMapAsync(this)
         }
+
+            storeA.setOnClickListener {
+                val latLng= LatLng(41.599998, -72.699997)
+                mMap.addMarker(MarkerOptions().position(latLng).title("Store A"))
+                val cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
+                mMap.animateCamera(cameraUpdate)
+            }
+            storeB.setOnClickListener {
+                val latLng= LatLng(42.599998, -73.699997)
+                mMap.addMarker(MarkerOptions().position(latLng).title("Store B"))
+                val cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
+                mMap.animateCamera(cameraUpdate)
+            }
+            storeC.setOnClickListener {
+                val latLng = LatLng(43.599998, -74.699997)
+                // Set the marker options
+                mMap.addMarker(MarkerOptions().position(latLng).title("Store C"))
+                // Move and animate the camera, 12f is the zoom level, the higher number zooms more closely
+                val cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
+                mMap.animateCamera(cameraUpdate)
+
+            }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -69,9 +95,10 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(41.123080, -73.416240)
-        mMap.addMarker(MarkerOptions().position(sydney).title("The Shop"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+       // val sydney = LatLng(41.123080, -73.416240)
+       // mMap.addMarker(MarkerOptions().position(sydney).title("The Shop"))
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        getLocationPermission()
     }
     fun searchButton(view: View) {
 
@@ -83,6 +110,7 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
         if (locationName.isEmpty()){
             return
         }
+
         geocoder = Geocoder(activity?.applicationContext)
 
         try {
@@ -106,7 +134,7 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
                 val markerOptions = MarkerOptions()
                         .position(latLng)
                         .title(address.locality)
-                        .snippet("Interesting place!") // You can change this text to something else
+                        .snippet("Welcome to "  + addressSearch.text.toString()  ) // You can change this text to something else
 
                 // Add the marker
                 mMap.addMarker(markerOptions)
@@ -121,9 +149,62 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
         }
 
     }
+
+    private fun getLocationPermission(){
+
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            // Permission is granted
+            enableUserLocation()
+        } else {
+
+            // Permission is not granted
+            // show an explanation
+            if (shouldShowRequestPermissionRationale(
+                            Manifest.permission.ACCESS_FINE_LOCATION)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                requestPermissions(
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        ACCESS_LOCATION_CODE)
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(requireActivity(),
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        ACCESS_LOCATION_CODE)
+
+                // ACCESS_LOCATION_CODE is an int constant (you decide a number). The callback method gets the
+                // result of the request.
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
+                                            grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            ACCESS_LOCATION_CODE -> {
+                enableUserLocation()
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun enableUserLocation() {
+        mMap.isMyLocationEnabled = true
+    }
+
     private fun View.hideKeyboard() {
         val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     }
 
+    fun playSound(view: View) {
+        if (myMediaPlayer == null){
+            myMediaPlayer = MediaPlayer.create(this, R.raw.ehooga)
+        }
+        myMediaPlayer?.start()
+    }
 }
