@@ -8,7 +8,7 @@ data class AppointmentHistory( var DamageRepair: Boolean? = null,
                                var vehicleMake: String? = null,
                                var vehicleModel: String? = null,
                                var Other: Boolean? = null,
-                               var vehicleDate: Timestamp? = null,
+                               var vehicleDate: String? = null,
                                var vehicleDetails: String? = null,
                                var vehicleYear: String? = null
 )

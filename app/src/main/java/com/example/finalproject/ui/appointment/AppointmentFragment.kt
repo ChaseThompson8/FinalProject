@@ -20,11 +20,15 @@ import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import android.media.MediaPlayer
+import java.sql.Time
+import androidx.appcompat.app.AppCompatActivity
+
 class AppointmentFragment : Fragment() {
 
 //   private lateinit var appointmentViewModel: AppointmentViewModel
     val TAG = "AppointmentFragment"
     private val REQUEST_CODE = 88
+    var myMediaPlayer : MediaPlayer? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -41,7 +45,6 @@ class AppointmentFragment : Fragment() {
         }
         //"yyyy.MM.dd G 'at' HH:mm:ss z"
         root.submit_button.setOnClickListener {
-
             val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             val make = make_text.text.toString()
@@ -52,25 +55,7 @@ class AppointmentFragment : Fragment() {
             var repair = false
             var other = false
 
-            val db = FirebaseFirestore.getInstance()
-           //Update Calender Item
 
-            val data=hashMapOf(
-                    "DamageRepair" to repair_box.isChecked,
-                    "Maintenance" to maintenance_box.isChecked,
-                    "vehicleMake" to make_text.text.toString(),
-                    "vehicleModel" to model_text.text.toString(),
-                    "Other" to other_box.isChecked,
-                    "vehicleDate" to Timestamp(calendar_item.date),
-                    "vehicleDetails" to details_text.text.toString(),
-                    "vehicleYear" to year_text.text.toString()
-            )
-            db.collection("Make_Appointment").add(data)
-                    .addOnSuccessListener{ documentReference -> Log.d(Oscillator.TAG, "DocumentSnapshot written with ID:${documentReference.id}")
-                    }
-                    .addOnFailureListener{ e->
-                        Log.w(Oscillator.TAG, "Error adding document", e)
-                    }
 
 
             // Check to see what check boxes are clicked
@@ -108,6 +93,25 @@ class AppointmentFragment : Fragment() {
 //                            "Make sure the date selected is at least one day from the current date")
 //            }
             else {
+                val db = FirebaseFirestore.getInstance()
+                //Update Calender Item
+
+                val data=hashMapOf(
+                        "DamageRepair" to repair_box.isChecked,
+                        "Maintenance" to maintenance_box.isChecked,
+                        "vehicleMake" to make_text.text.toString(),
+                        "vehicleModel" to model_text.text.toString(),
+                        "Other" to other_box.isChecked,
+                        "vehicleDate" to date,
+                        "vehicleDetails" to details_text.text.toString(),
+                        "vehicleYear" to year_text.text.toString()
+                )
+                db.collection("Make_Appointment").add(data)
+                        .addOnSuccessListener{ documentReference -> Log.d(Oscillator.TAG, "DocumentSnapshot written with ID:${documentReference.id}")
+                        }
+                        .addOnFailureListener{ e->
+                            Log.w(Oscillator.TAG, "Error adding document", e)
+                        }
 
                 editor.putString("Make", make)
                 editor.putString("Model", model)
@@ -139,6 +143,7 @@ class AppointmentFragment : Fragment() {
 
         return root
     }
+
     private fun showDialogue(title: String, message: String) {
         val builder = activity?.let { AlertDialog.Builder(it) }
         builder?.setTitle(title)
@@ -149,5 +154,6 @@ class AppointmentFragment : Fragment() {
         val dialog = builder?.create()
         dialog?.show()
     }
+
 
 }
