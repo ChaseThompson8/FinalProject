@@ -55,9 +55,6 @@ class AppointmentFragment : Fragment() {
             var repair = false
             var other = false
 
-
-
-
             // Check to see what check boxes are clicked
             if (maintenance_box.isChecked) {
                 maintenance = true
