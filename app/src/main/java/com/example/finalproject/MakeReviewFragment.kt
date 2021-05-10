@@ -14,11 +14,13 @@ import kotlinx.android.synthetic.main.fragment_make_review.*
 import kotlinx.android.synthetic.main.fragment_make_review.review_rating
 import kotlinx.android.synthetic.main.fragment_make_review.view.*
 import kotlinx.android.synthetic.main.review_item.*
+
 //
 
 import kotlinx.android.synthetic.main.fragment_reviews.view.*
 
 import android.*
+import android.media.MediaPlayer
 import android.nfc.Tag
 import androidx.constraintlayout.motion.utils.Oscillator.TAG
 
@@ -27,7 +29,7 @@ import kotlinx.android.synthetic.main.fragment_appointment.*
 //
 
 class MakeReviewFragment : Fragment() {
-
+    var myMediaPlayer : MediaPlayer? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,6 +62,7 @@ class MakeReviewFragment : Fragment() {
             if (review.isEmpty() || rating.isEmpty()){
                 showDialogue("Missing Info", "Please select a rating and give a " +
                         "description for your rating then click submit")
+                playSound(root)
             }
             else {
                 showDialogue("Thank You!", "Thank you for leaving a review\n" +
@@ -81,5 +84,11 @@ class MakeReviewFragment : Fragment() {
         }
         val dialog = builder?.create()
         dialog?.show()
+    }
+    fun playSound(view: View) {
+        if (myMediaPlayer == null){
+            myMediaPlayer = MediaPlayer.create(activity, R.raw.ehooga)
+        }
+        myMediaPlayer?.start()
     }
 }

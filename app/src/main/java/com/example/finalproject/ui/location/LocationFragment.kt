@@ -30,6 +30,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -108,6 +109,8 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
         //Log.d(TAG, "$locationName")
 
         if (locationName.isEmpty()){
+            showDialogue("Location Not Filled", "Please fill out a location and then try again.")
+            playSound(view)
             return
         }
 
@@ -200,10 +203,19 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
         val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     }
-
+    private fun showDialogue(title: String, message: String) {
+        val builder = activity?.let { AlertDialog.Builder(it) }
+        builder?.setTitle(title)
+        builder?.setMessage(message)
+        builder?.setIcon(android.R.drawable.ic_menu_info_details)
+        builder?.setPositiveButton("OKAY"){ dialog, which ->
+        }
+        val dialog = builder?.create()
+        dialog?.show()
+    }
     fun playSound(view: View) {
         if (myMediaPlayer == null){
-            myMediaPlayer = MediaPlayer.create(this, R.raw.ehooga)
+            myMediaPlayer = MediaPlayer.create(activity, R.raw.ehooga)
         }
         myMediaPlayer?.start()
     }

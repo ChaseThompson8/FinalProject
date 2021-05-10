@@ -62,7 +62,7 @@ import kotlinx.android.synthetic.main.fragment_location.view.*
 
 class MainActivity : AppCompatActivity() {
     val TAG = "MyActivity"
-
+    var myMediaPlayer : MediaPlayer? = null
     private lateinit var geocoder: Geocoder
     private val ACCESS_LOCATION_CODE = 125
     private lateinit var mMap: GoogleMap

@@ -68,6 +68,7 @@ class AppointmentFragment : Fragment() {
                 Log.d(TAG, "No check box selected")
                 showDialogue("Check box not selected", "Check off what kind of service" +
                         " appointment you'd like to schedule")
+                playSound(root)
             }
             else if (make.isEmpty() || model.isEmpty() || year.isEmpty() || details.isEmpty()) {
                 Log.d(TAG, "Missing car info")
@@ -122,5 +123,10 @@ class AppointmentFragment : Fragment() {
         val dialog = builder?.create()
         dialog?.show()
     }
-
+    fun playSound(view: View) {
+        if (myMediaPlayer == null){
+            myMediaPlayer = MediaPlayer.create(activity, R.raw.ehooga)
+        }
+        myMediaPlayer?.start()
+    }
 }
